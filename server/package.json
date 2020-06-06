@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "db":"json-server -w db.json",
+    "server": "json-server -w db.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
