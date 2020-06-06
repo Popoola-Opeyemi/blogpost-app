@@ -1,10 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, Button, FlatList } from 'react-native';
 import { Context } from "../context/BlogContext"
 import { Feather } from "@expo/vector-icons"
 
 const HomeScreen = ({ navigation }) => {
-  const { state, addBlogPost, deleteBlogPost } = useContext(Context)
+  const { state, getPosts, deleteBlogPost } = useContext(Context)
+
+  useEffect(() => {
+    const listner = navigation.addListener('focus', () => {
+      getPosts()
+    })
+
+    return () => listner()
+  }, [])
+
+
 
   return (
     <View>
@@ -28,7 +38,6 @@ const HomeScreen = ({ navigation }) => {
     </View>
   )
 }
-
 
 HomeScreen.options = ({ navigation }) => ({
   headerRight: () => (
